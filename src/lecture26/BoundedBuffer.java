@@ -40,7 +40,7 @@ public class BoundedBuffer<E> {
 	/** add e to the end of the queue, block until there is enough space 
 	 * @throws InterruptedException */
 	public synchronized void add(E e) throws InterruptedException {
-		while ((end + 1) % entries.size() == start)
+		while ((end + 1) % entries.size() == start) // vùng nhớ của buffer đã ddc xài sau notifyAll()
 			wait();
 		// we know that buffer is not full.
 		entries.set(end, e);
